@@ -4,7 +4,6 @@ namespace Web.Api.Models
 {
     public class Product
     {
-        [PosNumberNoZero(ErrorMessage ="ID must be equal or greater than 1")]
         public int ID { get; set; }
         [Required]
         public string Name { get; set; }

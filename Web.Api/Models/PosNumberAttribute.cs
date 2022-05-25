@@ -1,19 +1,21 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-public class PosNumberAttribute : ValidationAttribute
+namespace Web.Api.Models
 {
-    public override bool IsValid(object value)
+    public class PosNumberAttribute : ValidationAttribute
     {
-        if (value == null)
+        public override bool IsValid(object value)
         {
-            return true;
-        }
-        int getal;
-        if (int.TryParse(value.ToString(), out getal))
-        {
-            if (getal >= 0)
+            if (value == null)
+            {
                 return true;
+            }
+            if (int.TryParse(value.ToString(), out var getval))
+            {
+                if (getval >= 0)
+                    return true;
+            }
+            return false;
         }
-        return false;
     }
 }
