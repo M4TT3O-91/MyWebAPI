@@ -6,7 +6,7 @@ namespace Web.Api.SQL
 
     public class DataProvider : IDataProvider
     {
-        private string _connectionString;
+        private readonly string _connectionString;
 
         public DataProvider(string connectionString)
         {

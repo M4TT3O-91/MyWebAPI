@@ -9,8 +9,6 @@ namespace Web.Api.Controllers
     [Route("Product")]
     public class ProductController : ControllerBase
     {
-
-
         private readonly ILogger<ProductController> _logger;
         private readonly IDataProvider _dataProvider;
 
@@ -23,9 +21,7 @@ namespace Web.Api.Controllers
         [HttpGet("{id}")]
         public Product GetProductByID(int id)
         {
-
             return _dataProvider.GetProductByID(id);
-
         }
     }
 }
