@@ -29,5 +29,13 @@ namespace Web.Api.Controllers
 
         [HttpDelete("Delete/{id}")]
         public void Delete(int id) { _dataProvider.Delete(id); }
+
+        [HttpGet("All")]
+        public List<Product> GetAll(int? limit)
+        {
+            return limit != null ? _dataProvider.GetAllLimit(limit.GetValueOrDefault()).ToList() : _dataProvider.GetAll().ToList();
+        }
+
+
     }
 }

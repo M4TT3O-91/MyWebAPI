@@ -85,6 +85,53 @@ namespace Web.Api.SQL
             return command.ExecuteNonQuery();
         }
 
+        public IEnumerable<Product> GetAllLimit(int limit)
+        {
+            string sql = @"SELECT TOP (@limit) * FROM Products";
+            using var connection = new SqlConnection(_connectionString);
+            connection.Open();
+            using var command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@limit", limit);
+            var reader = command.ExecuteReader();
+            //if (!reader.HasRows)
+            //    throw new Exception("Nessun prodotto nella lista");
+            while (reader.Read())
+            {
+                yield return new Product()
+                {
+                    ID = Convert.ToInt32(reader["ID"].ToString()),
+                    Name = reader["Name"].ToString(),
+                    Price = Decimal.Parse(reader["Price"].ToString()),
+                    Quantity = int.Parse(reader["Quantity"].ToString()),
+                    Description = reader["Description"].ToString(),
+                };
+            }
+        }
+
+        public IEnumerable<Product> GetAll()
+        {
+            string sql = @"SELECT * FROM Products";
+            using var connection = new SqlConnection(_connectionString);
+            connection.Open();
+            using var command = new SqlCommand(sql, connection);
+            var reader = command.ExecuteReader();
+            //if (!reader.HasRows)
+            //    throw new Exception("Nessun prodotto nella lista");
+
+            while (reader.Read())
+            {
+                yield return new Product()
+                {
+                    ID = Convert.ToInt32(reader["ID"].ToString()),
+                    Name = reader["Name"].ToString(),
+                    Price = Decimal.Parse(reader["Price"].ToString()),
+                    Quantity = int.Parse(reader["Quantity"].ToString()),
+                    Description = reader["Description"].ToString(),
+                };
+            }
+        }
+
+
 
     }
 }
