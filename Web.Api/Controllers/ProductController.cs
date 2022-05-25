@@ -19,9 +19,12 @@ namespace Web.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public Product GetProductByID(int id)
-        {
-            return _dataProvider.GetProductByID(id);
-        }
+        public Product GetProductByID(int id) { return _dataProvider.GetByID(id); }
+
+        [HttpPut("Add")]
+        public void Add(Product product) { _dataProvider.Add(product); }
+
+        [HttpPost("Update")]
+        public void Update(Product product) { _dataProvider.Update(product); }
     }
 }
