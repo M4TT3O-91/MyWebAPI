@@ -62,7 +62,6 @@ namespace Web.Api.SQL
                                       ,[Quantity] = @Quantity
                                       ,[Description] = @Description
                                  WHERE ID = @ID";
-
                 using var connection = new SqlConnection(_connectionString);
                 connection.Open();
                 using var command = new SqlCommand(sql, connection);
@@ -71,20 +70,21 @@ namespace Web.Api.SQL
                 command.Parameters.AddWithValue("@Quantity", product.Quantity);
                 command.Parameters.AddWithValue("@Description", product.Description);
                 command.Parameters.AddWithValue("@ID", product.ID);
-
                 return command.ExecuteNonQuery();
             
         }
+
+        public int Delete(int id)
+        {
+            string sql = @" DELETE FROM Products
+                            WHERE ID=@ID";
+            using var connection = new SqlConnection(_connectionString);
+            connection.Open();
+            using var command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@ID", id);
+            return command.ExecuteNonQuery();
+        }
+
+
     }
 }
-
-/*
-UPDATE Products]
-   SET [Name] = <Name, nvarchar(50),>
-      ,[Price] = <Price, decimal(18,0),>
-      ,[Quantity] = <Quantity, int,>
-      ,[Description] = <Description, nvarchar(50),>
- WHERE <Condizioni di ricerca,,>
-GO
-
-*/

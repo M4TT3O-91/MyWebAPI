@@ -26,5 +26,8 @@ namespace Web.Api.Controllers
 
         [HttpPost("Update")]
         public void Update(Product product) { _dataProvider.Update(product); }
+
+        [HttpDelete("Delete/{id}")]
+        public void Delete(int id) { _dataProvider.Delete(id); }
     }
 }

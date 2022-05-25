@@ -7,5 +7,6 @@ namespace Web.Api.SQL
         public Product GetByID(int id);
         public int Add(Product product);
         public int Update(Product product);
+        public int Delete(int id);
     }
 }
