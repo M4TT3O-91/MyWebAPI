@@ -11,7 +11,6 @@ public class PosNumberAttribute : ValidationAttribute
         int getal;
         if (int.TryParse(value.ToString(), out getal))
         {
-
             if (getal >= 0)
                 return true;
         }

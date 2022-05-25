@@ -9,10 +9,10 @@ namespace Web.Api.Models
         [Required]
         public string Name { get; set; }
         [Required]
-        [PosNumber(ErrorMessage = "need a positive number")]
+        [PosNumber(ErrorMessage = "Price must be a positive number or zero")]
         public decimal Price { get; set; }
         [Required]
-        [PosNumber(ErrorMessage = "need a positive number")]
+        [PosNumber(ErrorMessage = "Price must be a positive number or zero")]
         public int Quantity { get; set; }
         public string Description { get; set; }
     }
